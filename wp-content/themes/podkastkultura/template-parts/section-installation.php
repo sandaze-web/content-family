@@ -15,8 +15,8 @@
         <?php if (have_rows('installation_services')): ?>
             <div class="table_price">
                 <div class="head">
-                    <p>Услуги по монтажу</p>
-                    <p>Что входит в услугу?</p>
+                    <p>Услуга</p>
+                    <p>Что входит?</p>
                     <p>Сроки</p>
                     <p>Стоимость</p>
                 </div>

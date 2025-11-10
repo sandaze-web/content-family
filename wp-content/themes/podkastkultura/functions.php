@@ -231,7 +231,7 @@ function register_acf_blocks()
         ));
         acf_register_block_type(array(
             'name'              => 'section-cases',
-            'title'             => __('Блок для страницы примеры'),
+            'title'             => __(ы'Блок для страницы пример'),
             'description'       => __('Блок с примерами видео и изображений'),
             'render_template'   => get_template_directory() . '/template-parts/section-cases.php',
             'category'          => 'layout',

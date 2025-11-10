@@ -30,6 +30,7 @@ $studios = get_field('studios'); // repeater
 
         <?php if ($studios): ?>
             <div class="studios-inner">
+                <img src="/images/hero/dekor.png" class="studios-dekor" alt="">
                 <?php foreach ($studios as $index => $studio): ?>
                     <div class="studios-box">
                         <div class="studios-contentBx show">
@@ -58,7 +59,9 @@ $studios = get_field('studios'); // repeater
                                         </div>
                                         <div class="studios-content-tags__item">
                                             <span><i class="fa-solid fa-user"></i></span>
-                                            <span><?php echo esc_html($studio['heroes']); ?></span>
+                                            <span class="studios-heroes" data-active-heroes>
+                                                <?php echo esc_html($studio['configurations'][0]['heroes']); // показываем первое значение ?>
+                                            </span>
                                         </div>
                                     </div>
 
@@ -99,6 +102,7 @@ $studios = get_field('studios'); // repeater
                                         <button
                                                 class="studios-config__tab <?php echo $config_index !== 0 ? 'active' : ''; ?>"
                                                 data-config="<?php echo $config_index; ?>"
+                                                data-heroes="<?php echo esc_attr($config['heroes']); ?>"
                                         >
                                             <?php echo esc_html($config['configuration_name']); ?>
                                         </button>

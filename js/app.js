@@ -280,6 +280,45 @@ document.addEventListener('DOMContentLoaded', function () { // Аналог $(do
                 }
             });
         });
+
+        document.querySelectorAll('.studios-configurations').forEach(configBlock => {
+            const tabs = configBlock.querySelectorAll('.studios-config__tab');
+            const galleries = configBlock.querySelectorAll('.studios-config__gallery');
+            const heroesEl = configBlock.closest('.studios-box').querySelector('[data-active-heroes]');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const configId = tab.dataset.config;
+                    const heroes = tab.dataset.heroes;
+
+                    galleries.forEach(gallery => {
+                        const isActive = gallery.dataset.configGallery === configId;
+                        gallery.classList.toggle('active', isActive);
+
+                        // 💡 Добавляем обновление Swiper'а, если этот блок стал активным
+                        if (isActive) {
+                            const sliderEl = gallery.querySelector('.studios-slider');
+                            const navEl = gallery.querySelector('.studios-nav');
+
+                            if (sliderEl && sliderEl.swiper) sliderEl.swiper.update();
+                            if (navEl && navEl.swiper) navEl.swiper.update();
+                        }
+                    });
+
+                    // Обновляем активные табы
+                    tabs.forEach(btn => {
+                        const relatedGallery = configBlock.querySelector(`.studios-config__gallery[data-config-gallery="${btn.dataset.config}"]`);
+                        const galleryIsHidden = !relatedGallery.classList.contains('active');
+                        btn.classList.toggle('active', galleryIsHidden);
+                    });
+
+                    if (heroesEl) {
+                        heroesEl.textContent = heroes;
+                    }
+                });
+            });
+
+        });
     }
 
     if(document.querySelector('.examples')) {
@@ -335,15 +374,14 @@ document.addEventListener('DOMContentLoaded', function () { // Аналог $(do
 
     if(document.getElementById('map')){
         let addr = $('.js-map').data('addr'),
-            x = $(".js-map").data('x'),
-            y = $(".js-map").data('y')
-
+            x = 55.7534,
+            y = 37.6589
         ymaps.ready(init);
 
         function init() {
             var Map = new ymaps.Map("map", {
                 center: [x, y],
-                zoom: 10,
+                zoom: 15,
                 controls: [
                     'zoomControl',
                     'rulerControl',
@@ -468,30 +506,7 @@ document.addEventListener('DOMContentLoaded', function () { // Аналог $(do
         })
     }
 
-    document.querySelectorAll('.studios-configurations').forEach(configBlock => {
-        const tabs = configBlock.querySelectorAll('.studios-config__tab');
-        const galleries = configBlock.querySelectorAll('.studios-config__gallery');
 
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const configId = tab.dataset.config;
-
-                // Показываем нужную галерею
-                galleries.forEach(gallery => {
-                    const isActive = gallery.dataset.configGallery === configId;
-                    gallery.classList.toggle('active', isActive);
-                });
-
-                // Теперь — обратная логика для табов:
-                // активен тот таб, чья галерея скрыта
-                tabs.forEach(btn => {
-                    const relatedGallery = configBlock.querySelector(`.studios-config__gallery[data-config-gallery="${btn.dataset.config}"]`);
-                    const galleryIsHidden = !relatedGallery.classList.contains('active');
-                    btn.classList.toggle('active', galleryIsHidden);
-                });
-            });
-        });
-    });
 
 
 });
