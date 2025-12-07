@@ -18,7 +18,7 @@ $notice = get_field('notice');
             <h2 class="title_block price__title"><?php echo esc_html($title); ?></h2>
         <?php endif; ?>
 
-        <div class="price-inner">
+        <form action="#" class="price-inner">
             <div class="price-main">
                 <div class="price-wrapper">
 
@@ -139,7 +139,7 @@ $notice = get_field('notice');
             </div>
 
             <div class="price-formBx">
-                <form class="price-form" action="#">
+                <div class="price-form">
                     <div class="price__item-title">Забронировать</div>
                     <div class="price-form-wrapper">
                         <div class="price-form-inputBx">
@@ -189,9 +189,12 @@ $notice = get_field('notice');
                     </div>
 
                     <button type="submit" class="btn primary-btn price__button">Забронировать</button>
-                </form>
+
+                    <input type="hidden" name="action" value="send_form_handler">
+                    <input type="hidden" name="form_name" value="форма инвайта">
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 
     <script>

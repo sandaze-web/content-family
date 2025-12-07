@@ -38,7 +38,7 @@
                 <?php if ($wa = get_field('site_whatsapp', 'option')): ?>
                     <a class="contacts__item svg wa" href="<?php echo esc_url($wa); ?>" target="_blank" aria-label="WhatsApp">
                         <div class="contacts__item-title">Написать в WhatsApp</div>
-                        <img alt="" src="images/socials/wa.svg"/>
+                        <img alt="" src="/images/socials/wa.svg"/>
                     </a>
                 <?php endif; ?>
 
@@ -51,10 +51,22 @@
                     <?php endif; ?>
 
                     <?php if (have_rows('contacts_metro')): ?>
-                        <div class="svg contacts__item-metroBx">
+                        <div class=" contacts__item-metroBx">
                             <?php while (have_rows('contacts_metro')): the_row(); ?>
                                 <div class="contacts__item-metro">
-                                    <img alt="" src="/images/icon/m.svg"/>
+                                    <div class="contacts__item-icons">
+                                        <?php
+                                        $metro_icons = get_sub_field('metro_icon'); // теперь это массив изображений
+                                        if ($metro_icons): ?>
+                                            <div class="metro-icons">
+                                                <?php foreach ($metro_icons as $icon): ?>
+<!--                                                    <img alt="--><?php //echo esc_attr($icon['alt']); ?><!--" src="--><?php //echo esc_url($icon['url']); ?><!--" class="metro-icon" />-->
+                                                <?php endforeach; ?>
+                                            </div>
+                                        <?php else: ?>
+                                            <img alt="иконка метро" src="/images/icon/m.svg" class="metro-icon"/>
+                                        <?php endif; ?>
+                                    </div>
                                     <span><?php echo esc_html(get_sub_field('metro_name')); ?></span>
                                     <span class="dash"></span>
                                     <span><?php echo esc_html(get_sub_field('metro_time')); ?></span>
@@ -70,7 +82,7 @@
                         </div>
                     </div>
 
-                    <img alt="" class="contacts__item-point" src="images/icon/point.svg"/>
+                    <img alt="" class="contacts__item-point" src="/images/icon/point.svg"/>
                 </div>
             </div>
 

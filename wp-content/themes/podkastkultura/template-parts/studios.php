@@ -5,7 +5,7 @@ $link_url = get_field('link_url');
 $studios = get_field('studios'); // repeater
 ?>
 
-<section class="studios">
+<section class="studios" id="studios">
     <div class="studios__container">
         <div class="studios-titleBx">
             <?php if ($title): ?>
@@ -72,11 +72,14 @@ $studios = get_field('studios'); // repeater
                                     <?php endif; ?>
                                 </div>
 
-                                <?php if ($studio['video']): ?>
+                                <?php if ($studio['configurations'][0]['configuration_video']): ?>
                                     <div class="studios-content-videoBtn videoBtn"
-                                         data-src="<?php echo esc_url($studio['video']['url']); ?>">
+                                         data-video-btn
+                                         data-src="<?php echo $studio['configurations'][0]['configuration_video'] ? esc_url($studio['configurations'][0]['configuration_video']['url']) : ''; ?>">
                                         <div class="-ibg studios-content-videoImg">
-                                            <img alt="" src="<?php echo esc_url($studio['video_preview']['url']); ?>"/>
+                                            <img alt=""
+                                                 src="<?php echo $studio['configurations'][0]['configuration_video_preview'] ? esc_url($studio['configurations'][0]['configuration_video_preview']['url']) : ''; ?>"
+                                                 data-video-preview-img/>
                                         </div>
                                     </div>
                                 <?php endif; ?>
@@ -100,9 +103,11 @@ $studios = get_field('studios'); // repeater
                                 <div class="studios-config__tabs">
                                     <?php foreach ($studio['configurations'] as $config_index => $config): ?>
                                         <button
-                                                class="studios-config__tab <?php echo $config_index !== 0 ? 'active' : ''; ?>"
+                                                class="studios-config__tab <?php echo $config_index == 0 ? 'active' : ''; echo count($studio['configurations']) <= 1 ? ' hidden' : ''; ?>"
                                                 data-config="<?php echo $config_index; ?>"
                                                 data-heroes="<?php echo esc_attr($config['heroes']); ?>"
+                                                data-video-url="<?php echo $config['configuration_video'] ? esc_url($config['configuration_video']['url']) : ''; ?>"
+                                                data-video-preview="<?php echo $config['configuration_video_preview'] ? esc_url($config['configuration_video_preview']['url']) : ''; ?>"
                                         >
                                             <?php echo esc_html($config['configuration_name']); ?>
                                         </button>

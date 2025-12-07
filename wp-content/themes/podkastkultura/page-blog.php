@@ -59,15 +59,15 @@ get_header();
                                         <?php endif; ?>
                                     </div>
 
-                                    <div class="blog_list_autor">
-                                        <a href="<?php echo get_author_posts_url($author_id); ?>">
-                                            <img src="<?php echo esc_url($author_avatar); ?>" alt="<?php echo esc_attr($author_name); ?>">
-                                            <div>
-                                                <p><?php echo esc_html($author_name); ?></p>
-                                                <span>- Автор</span>
-                                            </div>
-                                        </a>
-                                    </div>
+<!--                                    <div class="blog_list_autor">-->
+<!--                                        <a href="--><?php //echo get_author_posts_url($author_id); ?><!--">-->
+<!--                                            <img src="--><?php //echo esc_url($author_avatar); ?><!--" alt="--><?php //echo esc_attr($author_name); ?><!--">-->
+<!--                                            <div>-->
+<!--                                                <p>--><?php //echo esc_html($author_name); ?><!--</p>-->
+<!--                                                <span>- Автор</span>-->
+<!--                                            </div>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
                                 </div>
                             </div>
 

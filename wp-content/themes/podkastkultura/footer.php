@@ -8,7 +8,7 @@
 <footer class="section footer">
     <div class="footer__container">
         <div class="footer-logoBx">
-            <img alt="" src="images/logo.svg"/>
+            <img alt="" src="/images/logo.svg"/>
         </div>
         <div class="footer-media">
             <a class="footer-media__item email" href="mailto: hello@content-family.ru">hello@content-family.ru</a>
@@ -53,8 +53,8 @@
         <div class="footer-requisites">
             <div class="footer-requisites__item">ИП Мишкин А.А. ИНН 770472159084</div>
             <a class="footer-requisites__item" href="#">Написать ген. продюсеру</a>
-            <a class="footer-requisites__item" href="/dogovor-offerty">Договор офферты</a>
-            <a class="footer-requisites__item" href="#">Политика конфиденциальности</a>
+            <a class="footer-requisites__item" target="_blank" href="https://content-family.ru/wp-content/uploads/2025/11/oferta-content-family-1.pdf">Договор оферты</a>
+            <a class="footer-requisites__item" target="_blank" href="https://content-family.ru/wp-content/uploads/2025/11/politika-konfidenczialnosti.pdf">Политика конфиденциальности</a>
         </div>
         <div class="footer-notice">
             Информация на сайте носит ознакомительный характер и не является публичной офертой, определяемой положениями

@@ -20,15 +20,24 @@ add_action('after_setup_theme', function () {
 
 add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('pk-style', get_stylesheet_uri(), array(), '1.0.0');
-    wp_enqueue_style('pk-style-1', get_template_directory_uri() . '/assets/css/all.css', array(), null);
-    wp_enqueue_style('pk-style-2', get_template_directory_uri() . '/assets/css/color.css', array(), null);
-    wp_enqueue_style('pk-style-3', get_template_directory_uri() . '/assets/css/plyr.css', array(), null);
+//    wp_enqueue_style('pk-style-1', get_template_directory_uri() . '/assets/css/all.min.css', array(), null);
+//    wp_enqueue_style('pk-style-2', get_template_directory_uri() . '/assets/css/color.css', array(), null);
+//    wp_enqueue_style('pk-style-3', get_template_directory_uri() . '/assets/css/plyr.css', array(), null);
     wp_enqueue_script('pk-script-1', get_template_directory_uri() . '/assets/plugins/jquery.maskedinput.min.js', array('jquery'), null, true);
     wp_enqueue_script('pk-script-2', get_template_directory_uri() . '/assets/plugins/jquery.min.js', array('jquery'), null, true);
     wp_enqueue_script('pk-script-3', get_template_directory_uri() . '/assets/plugins/jquery.spincrement.min.js', array('jquery'), null, true);
     wp_enqueue_script('pk-script-4', get_template_directory_uri() . '/assets/plugins/plyr.js', array('jquery'), null, true);
     wp_enqueue_script('pk-script-5', get_template_directory_uri() . '/assets/plugins/swiper-bundle.min.js', array('jquery'), null, true);
 });
+
+add_action('wp_head', function () {
+    ?>
+    <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/assets/css/all.min.css" as="style" onload="this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/all.min.css">
+    </noscript>
+    <?php
+}, 5);
 
 // Widget area example
 add_action('widgets_init', function () {
@@ -231,7 +240,7 @@ function register_acf_blocks()
         ));
         acf_register_block_type(array(
             'name'              => 'section-cases',
-            'title'             => __(ы'Блок для страницы пример'),
+            'title'             => __('Блок для страницы пример'),
             'description'       => __('Блок с примерами видео и изображений'),
             'render_template'   => get_template_directory() . '/template-parts/section-cases.php',
             'category'          => 'layout',
@@ -400,3 +409,34 @@ function allow_svg_upload($mimes) {
     return $mimes;
 }
 add_filter('upload_mimes', 'allow_svg_upload');
+
+
+add_action('wp_ajax_send_form_handler', 'send_form_handler');
+add_action('wp_ajax_nopriv_send_form_handler', 'send_form_handler');
+
+function send_form_handler() {
+
+    $to = "belkin00733@gmail.com";
+
+    $form_name = isset($_POST['form_name']) ? sanitize_text_field($_POST['form_name']) : 'Форма';
+
+    $subject = "Новая заявка: " . $form_name;
+
+    $message = "<h2>Новая заявка с сайта</h2>";
+    $message .= "<p><strong>Форма:</strong> {$form_name}</p>";
+
+    foreach ($_POST as $key => $value) {
+        if ($key === 'action' || $key === 'form_name') continue;
+        $message .= "<p><strong>{$key}:</strong> " . sanitize_text_field($value) . "</p>";
+    }
+
+    // Заголовки
+    $headers = [
+            'Content-Type: text/html; charset=UTF-8',
+            'From: Content Family <hello@' . $_SERVER['SERVER_NAME'] . '>'
+    ];
+
+    wp_mail($to, $subject, $message, $headers);
+
+    wp_send_json(['success' => true]);
+}

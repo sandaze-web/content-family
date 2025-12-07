@@ -26,6 +26,11 @@
                                             <div class="-ibg info__slide-imgBx">
                                                 <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
                                             </div>
+                                            <?php if ($notice = get_sub_field('info_notice')): ?>
+                                                <div class="info__notice">
+                                                    <p><?php echo esc_html($notice); ?></p>
+                                                </div>
+                                            <?php endif; ?>
                                         </div>
                                     <?php endif; ?>
                                 <?php endwhile; ?>
@@ -44,12 +49,6 @@
 
                     <div class="info__pagination"></div>
                 </div>
-
-                <?php if ($notice = get_field('info_notice')): ?>
-                    <div class="info__notice">
-                        <p><?php echo esc_html($notice); ?></p>
-                    </div>
-                <?php endif; ?>
             </div>
         </div>
     </div>

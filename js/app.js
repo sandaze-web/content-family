@@ -7,7 +7,6 @@ const burgerButton = document.querySelector('.icon-menu')
 const menu = document.querySelector('.menu')
 const lockPaddingElements = document.querySelectorAll('[data-lp]')
 
-
 const toggleBodyLock = (isLock) => {
   FLS(`Попап ${isLock ? 'открыт' : 'закрыт'}`)
   const lockPaddingValue = window.innerWidth - pageWrapper.offsetWidth
@@ -220,6 +219,17 @@ const menuClose = () => {
 }
 
 document.addEventListener('DOMContentLoaded', function () { // Аналог $(document).ready(function(){
+    $('a[href^="#"]').on("click", function (e) {
+        let anchor = $(this);
+        let offsetAnchor = 100
+        if(window.innerWidth <= 768) offsetAnchor = 100
+        let offset = document.documentElement.clientHeight * offsetAnchor / 929
+        $('html, body').stop().animate({
+            scrollTop: $(anchor.attr("href")).offset().top - offset
+        }, 700);
+        e.preventDefault();
+    });
+
     if(document.querySelector('.burger')) {
         let burger = document.querySelector('.burger'),
             burgerMenu = document.querySelector('.burger-menu');
@@ -232,7 +242,6 @@ document.addEventListener('DOMContentLoaded', function () { // Аналог $(do
     if (document.querySelector('.studios-box')) {
         document.querySelectorAll('.studios-config__gallery').forEach(block => {
             const sliderEl = block.querySelector('.studios-slider');
-            console.log(sliderEl)
             const navEl = block.querySelector('.studios-nav');
 
             // считаем количество слайдов и задаём переменную
@@ -281,43 +290,98 @@ document.addEventListener('DOMContentLoaded', function () { // Аналог $(do
             });
         });
 
+        // Функция для инициализации Swiper
+        function initStudioSwiper(container) {
+            const sliderEl = container.querySelector('.studios-slider');
+            const navEl = container.querySelector('.studios-nav');
+
+            if (!sliderEl || sliderEl.swiper) return;
+
+            const studioSwiper = new Swiper(sliderEl, {
+                spaceBetween: 10,
+                slidesPerView: 1,
+                autoHeight: true,
+                pagination: {
+                    el: container.querySelector('.studios-pagination'),
+                    type: 'bullets',
+                    clickable: true,
+                },
+                thumbs: {
+                    swiper: {
+                        el: navEl,
+                        spaceBetween: 10,
+                        slidesPerView: 4,
+                        watchSlidesProgress: true,
+                    }
+                }
+            });
+        }
+
+        document.querySelectorAll('.studios-config__gallery').forEach(gallery => {
+            initStudioSwiper(gallery);
+        });
+
         document.querySelectorAll('.studios-configurations').forEach(configBlock => {
             const tabs = configBlock.querySelectorAll('.studios-config__tab');
             const galleries = configBlock.querySelectorAll('.studios-config__gallery');
             const heroesEl = configBlock.closest('.studios-box').querySelector('[data-active-heroes]');
+            const videoBtn = configBlock.closest('.studios-box').querySelector('[data-video-btn]');
+            const videoPreviewImg = configBlock.closest('.studios-box').querySelector('[data-video-preview-img]');
 
-            tabs.forEach(tab => {
+            tabs.forEach((tab, index) => {
                 tab.addEventListener('click', () => {
-                    const configId = tab.dataset.config;
                     const heroes = tab.dataset.heroes;
+                    const videoUrl = tab.dataset.videoUrl;
+                    const videoPreview = tab.dataset.videoPreview;
 
+                    // Обновляем активные галереи
                     galleries.forEach(gallery => {
-                        const isActive = gallery.dataset.configGallery === configId;
-                        gallery.classList.toggle('active', isActive);
-
-                        // 💡 Добавляем обновление Swiper'а, если этот блок стал активным
-                        if (isActive) {
-                            const sliderEl = gallery.querySelector('.studios-slider');
-                            const navEl = gallery.querySelector('.studios-nav');
-
-                            if (sliderEl && sliderEl.swiper) sliderEl.swiper.update();
-                            if (navEl && navEl.swiper) navEl.swiper.update();
-                        }
+                        gallery.classList.remove('active')
                     });
+                    galleries[index].classList.add('active')
 
                     // Обновляем активные табы
                     tabs.forEach(btn => {
-                        const relatedGallery = configBlock.querySelector(`.studios-config__gallery[data-config-gallery="${btn.dataset.config}"]`);
-                        const galleryIsHidden = !relatedGallery.classList.contains('active');
-                        btn.classList.toggle('active', galleryIsHidden);
+                        btn.classList.remove('active');
                     });
+                    tab.classList.add('active');
 
+                    // Обновляем количество героев
                     if (heroesEl) {
                         heroesEl.textContent = heroes;
                     }
+
+                    // Обновляем видео данные
+                    if (videoBtn) {
+                        if (videoUrl) {
+                            videoBtn.dataset.src = videoUrl;
+                            if (videoPreviewImg && videoPreview) {
+                                videoPreviewImg.src = videoPreview;
+                            }
+                            videoBtn.style.display = 'block';
+                        } else {
+                            videoBtn.style.display = 'none';
+                        }
+                    }
+
+                    // Обновляем Swiper'ы для активной галереи
+                    const activeGallery = galleries[index];
+                    const sliderEl = activeGallery.querySelector('.studios-slider');
+                    const navEl = activeGallery.querySelector('.studios-nav');
+
+                    if (sliderEl && sliderEl.swiper) {
+                        setTimeout(() => {
+                            sliderEl.swiper.update();
+                        }, 10);
+                    }
+
+                    if (navEl && navEl.swiper) {
+                        setTimeout(() => {
+                            navEl.swiper.update();
+                        }, 10);
+                    }
                 });
             });
-
         });
     }
 
@@ -506,9 +570,39 @@ document.addEventListener('DOMContentLoaded', function () { // Аналог $(do
         })
     }
 
+    if(document.querySelector('.js-404')) {
+        setTimeout(()=> {
+            window.location.href = '/'
+        }, 15000)
+    }
 
 
+    const forms = document.querySelectorAll("form");
 
+    if(forms.length) {
+        forms.forEach(form => {
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+
+                fetch("/wp-admin/admin-ajax.php", {
+                    method: "POST",
+                    body: formData
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert("Заявка отправлена!");
+                            form.reset();
+                        } else {
+                            alert("Ошибка отправки.");
+                        }
+                    })
+                    .catch(() => alert("Ошибка сети."));
+            });
+        });
+    }
 });
 
 

@@ -37,7 +37,7 @@
                 <?php if ($wa = get_field('site_whatsapp', 'option')): ?>
                     <a class="contacts__item svg wa" href="<?php echo esc_url($wa); ?>" target="_blank" aria-label="WhatsApp">
                         <div class="contacts__item-title">Написать в WhatsApp</div>
-                        <img alt="" src="images/socials/wa.svg"/>
+                        <img alt="" src="/images/socials/wa.svg"/>
                     </a>
                 <?php endif; ?>
 
@@ -49,7 +49,12 @@
                         <div class="svg contacts__item-metroBx">
                             <?php while (have_rows('contacts_metro')): the_row(); ?>
                                 <div class="contacts__item-metro">
-                                    <img alt="" src="/images/icon/m.svg"/>
+                                    <?php $metro_icon = get_sub_field('metro_icon'); // предполагаем, что это поле для иконки
+                                    if ($metro_icon): ?>
+                                        <img alt="<?php echo esc_attr($metro_icon['alt']); ?>" src="<?php echo esc_url($metro_icon['url']); ?>"/>
+                                    <?php else: ?>
+                                        <img alt="иконка метро" src="/images/icon/m.svg"/>
+                                    <?php endif; ?>
                                     <span><?php echo esc_html(get_sub_field('metro_name')); ?></span>
                                     <span class="dash"></span>
                                     <span><?php echo esc_html(get_sub_field('metro_time')); ?></span>

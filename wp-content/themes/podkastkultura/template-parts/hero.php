@@ -14,10 +14,10 @@
                 </div>
                 <div class="hero-buttonBx">
                     <button class="btn primary-btn">Забронировать</button>
-                    <button class="btn link-btn">
+                    <a href="#studios" class="btn link-btn">
                         <span>Подробнее</span>
                         <i class="fa-arrow-right fa-light"></i>
-                    </button>
+                    </a>
                 </div>
                 <div class="hero__price"><?= esc_html(get_field('price')); ?></div>
             </div>
