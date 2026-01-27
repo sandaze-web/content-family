@@ -23,30 +23,44 @@
           sizes="76x76"/>
     <link href="<?php echo get_template_directory_uri(); ?>/assets/favicon/favicon-32x32.png" rel="icon" sizes="32x32"
           type="image/png"/>
+    <link href="<?php echo get_template_directory_uri(); ?>/assets/favicon/favicon-48x48.png" rel="icon" sizes="48x48"
+          type="image/png"/>
     <link href="<?php echo get_template_directory_uri(); ?>/assets/favicon/favicon-16x16.png" rel="icon" sizes="16x16"
           type="image/png"/>
     <link href="<?php echo get_template_directory_uri(); ?>/assets/favicon/site.webmanifest" rel="manifest"/>
     <link color="#5bbad5" href="<?php echo get_template_directory_uri(); ?>/assets/favicon/safari-pinned-tab.svg"
           rel="mask-icon"/>
     <meta content="#da532c" name="msapplication-TileColor"/>
-    <meta content="noindex, nofollow" name="robots"/>
+
     <?php wp_head(); ?>
+
+    <!-- Yandex.Metrika counter -->
+    <!--    <script type="text/javascript">-->
+    <!--        (function(m,e,t,r,i,k,a){-->
+    <!--            m[i]=m[i]function(){(m[i].a=m[i].a[]).push(arguments)};-->
+    <!--            m[i].l=1*new Date();-->
+    <!--            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}-->
+    <!--            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)-->
+    <!--        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105473410', 'ym');-->
+    <!---->
+    <!--        ym(105473410, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});-->
+    <!--    </script>-->
+    <!--    <noscript><div><img src="https://mc.yandex.ru/watch/105473410" style="position:absolute; left:-9999px;" alt="" /></div></noscript>-->
+    <!-- /Yandex.Metrika counter -->
 
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
-            m[i]=m[i]function(){(m[i].a=m[i].a[]).push(arguments)};
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();
             for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
             k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105473410', 'ym');
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106079562', 'ym');
 
-        ym(105473410, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+        ym(106079562, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/105473410" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <noscript><div><img src="https://mc.yandex.ru/watch/106079562" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
-
-
 
     <style>
         .header {
@@ -431,7 +445,7 @@
 
                     </div>
                 </div>
-                <button class="btn primary-btn">Оставить заявку</button>
+                <a href="/#calculate-form" class="btn primary-btn">Оставить заявку</a>
             </div>
 
             <div class="burger"></div>

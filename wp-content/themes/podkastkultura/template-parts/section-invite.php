@@ -74,7 +74,7 @@ $subtitle = get_field('subtitle');     // Текст под заголовком
                         </div>
                     </div>
                     <!-- /Статичный контент -->
-                    <form class="invite-form">
+                    <form class="invite-form form-wrapper">
                         <div class="invite-form__item inputBx">
                             <label for="2334">Имя</label>
                             <input id="2334" name="name" type="text">
@@ -82,10 +82,10 @@ $subtitle = get_field('subtitle');     // Текст под заголовком
                         <div class="invite-form__item inputBx">
                             <div class="invite-socialsBx">
                                 <label>Способ связи *</label>
-                                <div class="socials invite-socials contact-methods">
+                                <div class="socials invite-socials contact-methods contact-input-wrapper">
 
                                     <label class="contact-method">
-                                        <input type="radio" name="contact_method" value="phone" checked>
+                                        <input type="radio" name="contact_method" value="Телефон" checked>
                                         <span class="contact-icon ">
                                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
@@ -100,7 +100,7 @@ $subtitle = get_field('subtitle');     // Текст под заголовком
                                     </label>
 
                                     <label class="contact-method">
-                                        <input type="radio" name="contact_method" value="telegram">
+                                        <input type="radio" name="contact_method" value="Телеграм">
                                         <span class="contact-icon ">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16"
                                                  viewBox="0 0 20 16" fill="none">
@@ -132,7 +132,7 @@ $subtitle = get_field('subtitle');     // Текст под заголовком
                                     </label>
 
                                     <label class="contact-method">
-                                        <input type="radio" name="contact_method" value="whatsapp">
+                                        <input type="radio" name="contact_method" value="Whatsapp">
                                         <span class="contact-icon ">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="18"
                                                  viewBox="0 0 19 18" fill="none">
@@ -166,22 +166,22 @@ $subtitle = get_field('subtitle');     // Текст под заголовком
                                 </div>
                             </div>
                         </div>
-                        <div class="invite-form__item inputBx" id="contact-input-wrapper">
+                        <div class="invite-form__item inputBx contact-input">
                             <label for="contact-field">Номер телефона *</label>
                             <input id="contact-field" name="contact_value" type="text" class="phone-invite"
                                    placeholder="+7">
                         </div>
                         <div class="invite-form__item invite-form__checkBx">
                             <div class="checkBx">
-                                <input type="checkbox" name="check" id="43534544">
-                                <label for="43534544">Нажимая на кнопку вы соглашаетесь с условиями обработки данных и
+                                <input type="checkbox" name="check" id="43534544" required>
+                                <label for="43534544">*Нажимая на кнопку вы соглашаетесь с условиями обработки данных и
                                     политикой конфиденциальности</label>
                             </div>
                         </div>
                         <button class="btn primary-btn invite-form__button">Записаться</button>
 
                         <input type="hidden" name="action" value="send_form_handler">
-                        <input type="hidden" name="form_name" value="форма инвайта">
+                        <input type="hidden" name="form_name" value="Форма инвайта">
                     </form>
 
 
@@ -190,35 +190,3 @@ $subtitle = get_field('subtitle');     // Текст под заголовком
         </div>
     </div>
 </section>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const radios = document.querySelectorAll('input[name="contact_method"]');
-        const wrapper = document.getElementById('contact-input-wrapper');
-        const label = wrapper.querySelector('label');
-        const input = wrapper.querySelector('input');
-        $('.phone-invite').mask("+7 (999) 999 99-99")
-
-        function updateField(value) {
-            if (value === 'phone' || value === 'whatsapp') {
-                label.textContent = 'Номер телефона *';
-                input.placeholder = '+7';
-                input.classList.add('phone');
-                $('.phone-invite').mask("+7 (999) 999 99-99")
-            }
-
-            if (value === 'telegram') {
-                label.textContent = 'Ник в Telegram *';
-                input.placeholder = '@username';
-                input.classList.remove('phone');
-                $('.phone-invite').unmask();
-            }
-        }
-
-        radios.forEach(radio => {
-            radio.addEventListener('change', function () {
-                updateField(this.value);
-            });
-        });
-    });
-</script>

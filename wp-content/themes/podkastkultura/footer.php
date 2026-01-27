@@ -73,6 +73,21 @@
         </div>
     </div>
 </div>
+
+<div class="_overlay-bg modal thanks-modal ">
+    <div class="content">
+        <div>
+            <span class="title">Спасибо! Ваша заявка принята.</span>
+            <p>В ближайшее время мы свяжемся с вами для уточнения деталей</p>
+        </div>
+        <div class="thanks-modal__logo">
+            <img src="/images/logo.svg" alt="Логотип">
+        </div>
+        <div class="button-close video-modal-close thanks-modal-close">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+    </div>
+</div>
 <?php wp_footer(); ?>
 <!--==========   PLUGINS JS   ==========-->
 <script defer="defer" src="/static/plugins/jquery.min.js"></script>

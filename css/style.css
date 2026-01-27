@@ -1799,7 +1799,19 @@ video {
     display: flex;
     gap: 16px;
 }
-
+.price-form .invite-form__item input {
+    background-color: transparent;
+    border: 1px solid rgb(227, 227, 227);
+    border-radius: 10px;
+    padding: 14px 20px;
+}
+.checkBx input:invalid + label {
+    color: #ff3b3b; /* красный текст */
+}
+.price-form .invite-form__item label {
+    color: rgb(123, 126, 129);
+    font-size: 16px;
+}
 .price-form-sumBx {
     border-radius: 10px;
     padding: 20px;
@@ -3328,6 +3340,7 @@ video {
 
 .price_list_button {
     margin-top: auto;
+    display: inline-block;
 }
 
 .price_installation .head_desc p {
@@ -3585,10 +3598,61 @@ video {
     border-radius: 25px;
     position: relative;
 }
-
+.thanks-modal .content {
+    max-width: 477px;
+    height: 441px;
+    position: relative;
+    background: #fff;
+    border-radius: 25px;
+    padding: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+.thanks-modal .content span {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 110%;
+    display: block;
+    margin-bottom: 22px;
+    max-width: 346px;
+    color: rgb(11, 16, 20);
+}
+.thanks-modal .content p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    color: rgb(123, 126, 129);
+    max-width: 273px;
+}
+.thanks-modal__logo {
+    width: 100%;
+    max-width: 100%;
+}
+.thanks-modal__logo img {
+    width: 100%;
+}
 @media (max-width: 760px) {
     .video-modal-inner {
         height: auto;
+    }
+    .thanks-modal {
+        padding: 0;
+    }
+    .thanks-modal .content {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 0;
+        height: 100%;
+        padding-top: 80px;
+    }
+    .thanks-modal-close {
+        right: 40px !important;
+        top: 40px !important;
+        transform: none !important;
+    }
+    .thanks-modal-close i{
+        color: rgb(11, 16, 20) !important;
     }
 }
 

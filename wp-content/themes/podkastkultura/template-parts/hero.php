@@ -13,7 +13,7 @@
                     качеству изображения, звука и смыслов.
                 </div>
                 <div class="hero-buttonBx">
-                    <button class="btn primary-btn">Забронировать</button>
+                    <a href="#calculate-form" class="btn primary-btn">Забронировать</a>
                     <a href="#studios" class="btn link-btn">
                         <span>Подробнее</span>
                         <i class="fa-arrow-right fa-light"></i>

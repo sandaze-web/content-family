@@ -416,18 +416,44 @@ add_action('wp_ajax_nopriv_send_form_handler', 'send_form_handler');
 
 function send_form_handler() {
 
-    $to = "belkin00733@gmail.com";
+    $to = "Grigorii_Petruk@mail.ru";
 
     $form_name = isset($_POST['form_name']) ? sanitize_text_field($_POST['form_name']) : 'Форма';
-
     $subject = "Новая заявка: " . $form_name;
 
+    // Собираем письмо
     $message = "<h2>Новая заявка с сайта</h2>";
     $message .= "<p><strong>Форма:</strong> {$form_name}</p>";
 
-    foreach ($_POST as $key => $value) {
-        if ($key === 'action' || $key === 'form_name') continue;
-        $message .= "<p><strong>{$key}:</strong> " . sanitize_text_field($value) . "</p>";
+    // Основные данные
+    $fields = [
+            "Имя" => "name",
+            "Телефон" => "phone",
+            "Контактные данные" => "contact_value",
+            "Студия" => "services_studio",
+            "Услуга" => "services_variant",
+            "Кол-во часов" => "hours",
+            "Итоговая стоимость" => "calculated_total",
+            "Способ связи" => "contact_method",
+    ];
+
+    foreach ($fields as $label => $key) {
+        if (!empty($_POST[$key])) {
+            $value = sanitize_text_field($_POST[$key]);
+            $message .= "<p><strong>{$label}:</strong> {$value}</p>";
+        }
+    }
+
+    // Опции
+    if (!empty($_POST['services_option'])) {
+        $opts = array_map('sanitize_text_field', $_POST['services_option']);
+        $message .= "<p><strong>Опции:</strong> " . implode(", ", $opts) . "</p>";
+    }
+
+    // Доп. опции
+    if (!empty($_POST['extra_option'])) {
+        $extra = array_map('sanitize_text_field', $_POST['extra_option']);
+        $message .= "<p><strong>Дополнительно:</strong> " . implode(", ", $extra) . "</p>";
     }
 
     // Заголовки

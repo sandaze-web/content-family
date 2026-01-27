@@ -33,7 +33,7 @@ $steps = get_field('steps'); // repeater
                         <?php endif; ?>
 
                         <?php if ($index === 0): ?>
-                            <div class="svg steps__item-socials">
+                            <div class=" steps__item-socials">
                                 <?php if ($phone = get_field('site_phone', 'option')): ?>
                                     <a class="steps__item-phone" href="tel:<?php echo preg_replace('/\D+/', '', $phone); ?>">
                                         <?php echo esc_html($phone); ?>
@@ -42,13 +42,13 @@ $steps = get_field('steps'); // repeater
 
                                 <?php if ($tg = get_field('site_telegram', 'option')): ?>
                                     <a class="steps__item-social" href="<?php echo esc_url($tg); ?>" target="_blank" aria-label="Telegram">
-                                        <img alt="" class="" src="images/socials/tg.svg"/>
+                                        <img alt="" class="" src="/images/socials/tg.svg"/>
                                     </a>
                                 <?php endif; ?>
 
                                 <?php if ($wa = get_field('site_whatsapp', 'option')): ?>
                                     <a class="steps__item-social" href="<?php echo esc_url($wa); ?>" target="_blank" aria-label="WhatsApp">
-                                        <img alt="" class="svg" src="images/socials/wa.svg"/>
+                                        <img alt="" class="svg" src="/images/socials/wa.svg"/>
                                     </a>
                                 <?php endif; ?>
                             </div>

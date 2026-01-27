@@ -218,6 +218,8 @@ const menuClose = () => {
   html.classList.remove('menu-open')
 }
 
+
+
 document.addEventListener('DOMContentLoaded', function () { // Аналог $(document).ready(function(){
     $('a[href^="#"]').on("click", function (e) {
         let anchor = $(this);
@@ -593,7 +595,8 @@ document.addEventListener('DOMContentLoaded', function () { // Аналог $(do
                     .then(res => res.json())
                     .then(data => {
                         if (data.success) {
-                            alert("Заявка отправлена!");
+                            // alert("Заявка отправлена!");
+                            document.querySelector('.thanks-modal').classList.add('_is-open')
                             form.reset();
                         } else {
                             alert("Ошибка отправки.");
@@ -601,6 +604,47 @@ document.addEventListener('DOMContentLoaded', function () { // Аналог $(do
                     })
                     .catch(() => alert("Ошибка сети."));
             });
+        });
+    }
+
+    // Находим все блоки с контактами
+    const wrappers = document.querySelectorAll('.form-wrapper');
+    if(wrappers.length) {
+        $('.phone-invite').mask("+7 (999) 999 99-99");
+        wrappers.forEach(wrapper => {
+
+            const radios = wrapper.querySelectorAll('input[name="contact_method"]');
+            const label = wrapper.querySelector('.contact-input label');
+            const input = wrapper.querySelector('.contact-input input');
+
+            function updateField(value) {
+
+                if (value === 'Телефон' || value === 'Whatsapp') {
+                    label.textContent = 'Номер телефона *';
+                    input.placeholder = '+7';
+                    input.classList.add('phone-invite');
+                    $(input).mask("+7 (999) 999 99-99");
+                }
+
+                if (value === 'Телеграм') {
+                    label.textContent = 'Ник в Telegram *';
+                    input.placeholder = '@username';
+                    input.classList.remove('phone-invite');
+                    $(input).unmask();
+                }
+            }
+
+            // Вешаем обработчик на каждую радиокнопку
+            radios.forEach(radio => {
+                radio.addEventListener('change', function () {
+                    updateField(this.value);
+                });
+            });
+
+            // Если уже что-то выбрано по умолчанию — обновим
+            const checked = wrapper.querySelector('.social-method:checked');
+            if (checked) updateField(checked.dataset.type);
+
         });
     }
 });
