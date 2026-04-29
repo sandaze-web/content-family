@@ -205,7 +205,7 @@ $notice = get_field('notice');
 
                                     <label class="contact-method">
                                         <input type="radio" name="contact_method" value="Whatsapp">
-                                        <span class="contact-icon">
+                                        <span class="contact-icon ">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="18"
                                                  viewBox="0 0 19 18" fill="none">
                                                 <mask id="mask0_1_26" style="mask-type:alpha" maskUnits="userSpaceOnUse"
@@ -288,7 +288,7 @@ $notice = get_field('notice');
 
                 // Чекбоксы опций (Онлайн-трансляция и т.д.)
                 document.querySelectorAll('input[type="checkbox"][data-price]').forEach((c, index) => {
-                    if(index === 0 ) return
+                    // if(index === 0 ) return
                     if (c.checked) {
                         optionPrice += parseFloat(c.dataset.price) || 0
                     }

@@ -9,13 +9,20 @@
     <meta charset="utf-8"/>
     <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
     <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<!--    <link media="print" rel="preload" href="/static/css/all.min.css" as="style" onload="this.rel='stylesheet'"/>-->
+    <!--    <link media="print" rel="preload" href="/static/css/all.min.css" as="style" onload="this.rel='stylesheet'"/>-->
 
     <!-- ========== COLOR BRAND ========== -->
     <link rel="preload" href="/static/css/color.css" as="style" onload="this.rel='stylesheet'"/>
+
     <!-- ========== MAIN CSS ========== -->
     <link rel="preload" href="/css/style.css" as="style" onload="this.rel='stylesheet'"/>
-    <!-- ========== PLUGINS CSS ========== -->
+    <!--    <link rel="preload" href="/css/style.css" as="style" onload="this.rel='stylesheet'">-->
+    <!---->
+    <!--    <noscript>-->
+    <!--        <link rel="stylesheet" href="/css/style.css">-->
+    <!--    </noscript>-->
+
+
     <!-- ========== PLUGINS CSS ========== -->
     <link rel="preload" href="/static/css/plyr.css" as="style" onload="this.rel='stylesheet'"/>
     <!--==========   FAVICON   ==========-->
@@ -30,23 +37,10 @@
     <link href="<?php echo get_template_directory_uri(); ?>/assets/favicon/site.webmanifest" rel="manifest"/>
     <link color="#5bbad5" href="<?php echo get_template_directory_uri(); ?>/assets/favicon/safari-pinned-tab.svg"
           rel="mask-icon"/>
+    <link rel="icon" href="/favicon.ico" sizes="any">
     <meta content="#da532c" name="msapplication-TileColor"/>
 
     <?php wp_head(); ?>
-
-    <!-- Yandex.Metrika counter -->
-    <!--    <script type="text/javascript">-->
-    <!--        (function(m,e,t,r,i,k,a){-->
-    <!--            m[i]=m[i]function(){(m[i].a=m[i].a[]).push(arguments)};-->
-    <!--            m[i].l=1*new Date();-->
-    <!--            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}-->
-    <!--            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)-->
-    <!--        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105473410', 'ym');-->
-    <!---->
-    <!--        ym(105473410, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});-->
-    <!--    </script>-->
-    <!--    <noscript><div><img src="https://mc.yandex.ru/watch/105473410" style="position:absolute; left:-9999px;" alt="" /></div></noscript>-->
-    <!-- /Yandex.Metrika counter -->
 
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -55,11 +49,11 @@
             m[i].l=1*new Date();
             for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
             k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106079562', 'ym');
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108239319', 'ym');
 
-        ym(106079562, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+        ym(108239319, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/106079562" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <noscript><div><img src="https://mc.yandex.ru/watch/108239319" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
 
     <style>
@@ -334,7 +328,9 @@
                 padding-bottom: 0px;
                 overflow: hidden;
             }
-
+            .breadcrumb {
+                margin-top: 32px;
+            }
             .hero__bg {
                 width: 389px;
                 height: auto;
@@ -383,6 +379,10 @@
 
             .hero-buttonBx .link-btn i {
                 color: #fff;
+            }
+
+            .header-cta .btn {
+                display: none;
             }
         }
 

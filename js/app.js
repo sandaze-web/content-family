@@ -647,6 +647,54 @@ document.addEventListener('DOMContentLoaded', function () { // Аналог $(do
 
         });
     }
+
+    const players = document.querySelectorAll('.js-plyr-video');
+
+    if (players.length) {
+        players.forEach(function (player) {
+            new Plyr(player, {
+                controls: [
+                    'play-large',
+                    'play',
+                    'progress',
+                    'current-time',
+                    'mute',
+                    'volume',
+                    'fullscreen'
+                ]
+            });
+        });
+    }
+
+    if ($('.photo_block-wrapper')) {
+        $('.photo_block-wrapper').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            arrows: false,
+            initialSlide: 0,
+            speed: 13000, // большая скорость нужна для плавности
+            autoplay: true,
+            autoplaySpeed: 0, // нет паузы между прокрутками
+            cssEase: 'linear', // плавная прокрутка
+            infinite: true,
+            dots: false,
+            responsive: [
+                {
+                    breakpoint: 576, // до 576px
+                    settings: {
+                        slidesToShow: 1.2,
+                        slidesToScroll: 1,
+                        arrows: false,
+                        speed: 500, // большая скорость нужна для плавности
+                        autoplay: false,
+                        cssEase: 'ease', // плавная прокрутка
+                        infinite: false,
+                        autoplaySpeed: 3000,
+                    }
+                }
+            ]
+        });
+    }
 });
 
 

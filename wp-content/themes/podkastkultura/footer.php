@@ -94,6 +94,7 @@
 <script defer="defer" src="/static/plugins/jquery.maskedinput.min.js"></script>
 <script defer="defer" src="/static/plugins/swiper-bundle.min.js"></script>
 <script defer="defer" src="/static/plugins/plyr.js"></script>
+<script defer="defer" src="/static/plugins/slick.min.js"></script>
 <script defer="defer" src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=b1636bea-a71f-4f63-83f5-554063b5a20b"
         type="text/javascript"></script>
 <!--==========   SCRIPTS   ==========-->

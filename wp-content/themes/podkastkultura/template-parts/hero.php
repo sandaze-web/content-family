@@ -21,11 +21,13 @@
                 </div>
                 <div class="hero__price"><?= esc_html(get_field('price')); ?></div>
             </div>
+            <?php if(!empty(get_field('video'))): ?>
             <div class="-ibg hero-mediaBx">
                 <video autoplay="" loop="" muted="" playsinline=""
                        src="<?php echo esc_url(get_field('video')['url']); ?>"></video>
                 <p>видеообзор</p>
             </div>
+            <?php endif; ?>
         </div>
     </div>
     <img alt="" class="hero__bg" src="images/hero/bg.png"/>

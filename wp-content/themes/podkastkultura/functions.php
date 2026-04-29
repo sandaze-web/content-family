@@ -18,23 +18,34 @@ add_action('after_setup_theme', function () {
     ));
 });
 
-add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_style('pk-style', get_stylesheet_uri(), array(), '1.0.0');
-//    wp_enqueue_style('pk-style-1', get_template_directory_uri() . '/assets/css/all.min.css', array(), null);
-//    wp_enqueue_style('pk-style-2', get_template_directory_uri() . '/assets/css/color.css', array(), null);
-//    wp_enqueue_style('pk-style-3', get_template_directory_uri() . '/assets/css/plyr.css', array(), null);
-    wp_enqueue_script('pk-script-1', get_template_directory_uri() . '/assets/plugins/jquery.maskedinput.min.js', array('jquery'), null, true);
-    wp_enqueue_script('pk-script-2', get_template_directory_uri() . '/assets/plugins/jquery.min.js', array('jquery'), null, true);
-    wp_enqueue_script('pk-script-3', get_template_directory_uri() . '/assets/plugins/jquery.spincrement.min.js', array('jquery'), null, true);
-    wp_enqueue_script('pk-script-4', get_template_directory_uri() . '/assets/plugins/plyr.js', array('jquery'), null, true);
-    wp_enqueue_script('pk-script-5', get_template_directory_uri() . '/assets/plugins/swiper-bundle.min.js', array('jquery'), null, true);
-});
+//add_action('wp_enqueue_scripts', function () {
+//    wp_enqueue_style('pk-style', get_stylesheet_uri(), array(), '1.0.0');
+////    wp_enqueue_style('pk-style-1', get_template_directory_uri() . '/assets/css/all.min.css', array(), null);
+////    wp_enqueue_style('pk-style-2', get_template_directory_uri() . '/assets/css/color.css', array(), null);
+////    wp_enqueue_style('pk-style-3', get_template_directory_uri() . '/assets/css/plyr.css', array(), null);
+//    wp_enqueue_script('pk-script-1', get_template_directory_uri() . '/assets/plugins/jquery.maskedinput.min.js', array('jquery'), null, true);
+//    wp_enqueue_script('pk-script-2', get_template_directory_uri() . '/assets/plugins/jquery.min.js', array('jquery'), null, true);
+//    wp_enqueue_script('pk-script-3', get_template_directory_uri() . '/assets/plugins/jquery.spincrement.min.js', array('jquery'), null, true);
+//    wp_enqueue_script('pk-script-4', get_template_directory_uri() . '/assets/plugins/plyr.js', array('jquery'), null, true);
+//    wp_enqueue_script('slick', get_template_directory_uri() . '/assets/plugins/slick.min.js', array('jquery'), null, true);
+//    wp_enqueue_script('pk-script-5', get_template_directory_uri() . '/assets/plugins/swiper-bundle.min.js', array('jquery'), null, true);
+//});
 
 add_action('wp_head', function () {
     ?>
     <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/assets/css/all.min.css" as="style" onload="this.rel='stylesheet'">
     <noscript>
         <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/all.min.css">
+    </noscript>
+
+    <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/assets/css/slick.min.css" as="style" onload="this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/slick.min.css">
+    </noscript>
+
+    <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/assets/css/slick-theme.css" as="style" onload="this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/slick-theme.css">
     </noscript>
     <?php
 }, 5);
@@ -270,6 +281,44 @@ function register_acf_blocks()
             'keywords'          => array('info', 'услуги', 'позиционирование'),
             'supports'          => ['align' => false],
         ));
+        acf_register_block_type(array(
+            'name'              => 'section-included',
+            'title'             => __('Что включено'),
+            'description'       => __('Блок с описанием что включено в стоимость'),
+            'render_template'   => get_template_directory() . '/template-parts/section-included.php',
+            'category'          => 'layout',
+            'icon'              => 'grid-view',
+            'supports'          => ['align' => false],
+        ));
+        acf_register_block_type(array(
+            'name'              => 'section-tags',
+            'title'             => __('Теги + 3 медиа'),
+            'description'       => __('Блок с тегами и фото после главной'),
+            'render_template'   => get_template_directory() . '/template-parts/section-tags.php',
+            'category'          => 'layout',
+            'icon'              => 'grid-view',
+            'supports'          => ['align' => false],
+        ));
+        acf_register_block_type(array(
+            'name'              => 'section-about-short',
+            'title'             => __('О нас (коротко)'),
+            'description'       => __('Короткое описание о нас'),
+            'render_template'   => get_template_directory() . '/template-parts/section-about-short.php',
+            'category'          => 'layout',
+            'icon'              => 'grid-view',
+            'supports'          => ['align' => false],
+        ));
+        acf_register_block_type(array(
+            'name'              => 'section-slider',
+            'title'             => __('Слайдер'),
+            'description'       => __('Слайдер за кадром'),
+            'render_template'   => get_template_directory() . '/template-parts/section-slider.php',
+            'category'          => 'layout',
+            'icon'              => 'grid-view',
+            'supports'          => ['align' => false],
+        ));
+
+
     }
 }
 
