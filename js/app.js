@@ -221,6 +221,8 @@ const menuClose = () => {
 
 
 document.addEventListener('DOMContentLoaded', function () { // Аналог $(document).ready(function(){
+
+
     $('a[href^="#"]').on("click", function (e) {
         let anchor = $(this);
         let offsetAnchor = 100
@@ -578,31 +580,68 @@ document.addEventListener('DOMContentLoaded', function () { // Аналог $(do
         }, 15000)
     }
 
+    if (document.querySelector('.thanks-modal')) {
+        setTimeout(() => {
+            document.querySelector('.thanks-modal').style.display = 'flex';
+        });
+    }
 
     const forms = document.querySelectorAll("form");
 
-    if(forms.length) {
+    if (forms.length) {
         forms.forEach(form => {
+
             form.addEventListener("submit", function (e) {
                 e.preventDefault();
 
+                // уже отправляется
+                if (form.classList.contains("_sending")) return;
+
+                form.classList.add("_sending");
+
+                // блокируем кнопку
+                const submitBtn = form.querySelector('button[type="submit"]');
+
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.dataset.defaultText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = "Отправка...";
+                }
+
                 const formData = new FormData(form);
 
+                console.log(3242342)
                 fetch("/wp-admin/admin-ajax.php", {
                     method: "POST",
                     body: formData
                 })
                     .then(res => res.json())
                     .then(data => {
+
                         if (data.success) {
-                            // alert("Заявка отправлена!");
-                            document.querySelector('.thanks-modal').classList.add('_is-open')
+
+                            document
+                                .querySelector('.thanks-modal')
+                                ?.classList.add('_is-open');
+
                             form.reset();
+
                         } else {
                             alert("Ошибка отправки.");
                         }
                     })
-                    .catch(() => alert("Ошибка сети."));
+                    .catch(() => {
+                        alert("Ошибка сети.");
+                    })
+                    .finally(() => {
+
+                        form.classList.remove("_sending");
+
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = submitBtn.dataset.defaultText;
+                        }
+                    });
             });
         });
     }
@@ -626,8 +665,8 @@ document.addEventListener('DOMContentLoaded', function () { // Аналог $(do
                     $(input).mask("+7 (999) 999 99-99");
                 }
 
-                if (value === 'Телеграм') {
-                    label.textContent = 'Ник в Telegram *';
+                if (value === 'Телеграм' || value === 'Max') {
+                    label.textContent = value === 'Телеграм' ? 'Ник в Telegram *' : 'Ник в Max *';
                     input.placeholder = '@username';
                     input.classList.remove('phone-invite');
                     $(input).unmask();
@@ -695,6 +734,78 @@ document.addEventListener('DOMContentLoaded', function () { // Аналог $(do
             ]
         });
     }
+
+    if(document.querySelector('.burger-menu')) {
+        const parentItems = document.querySelectorAll(
+            '.burger-menu .menu-item-has-children > a'
+        );
+
+        parentItems.forEach(function (link) {
+            link.addEventListener('click', function (event) {
+                if (window.innerWidth > 760) return;
+
+                console.log(234234)
+                event.preventDefault();
+
+                const parent = link.closest('.menu-item-has-children');
+
+                parent.classList.toggle('open');
+            });
+        });
+    }
+
+    if(document.querySelector('.platforms__slider')) {
+        $('.platforms__slider').slick({
+            slidesToShow: 1,
+            variableWidth: true,
+            slidesToScroll: 1,
+            arrows: false,
+            initialSlide: 5,
+            speed: 5000, // большая скорость нужна для плавности
+            autoplay: true,
+            autoplaySpeed: 0, // нет паузы между прокрутками
+            cssEase: 'linear', // плавная прокрутка
+            infinite: true,
+            dots: false,
+            responsive: [
+                {
+                    breakpoint: 576, // до 576px
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        arrows: false,
+                        speed: 5000, // большая скорость нужна для плавности
+                        cssEase: 'linear', // плавная прокрутка
+                    }
+                }
+            ]
+        });
+    }
+
+    document.querySelector('.hero-scroll-next')?.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const sections = [...document.querySelectorAll('section')];
+
+        const currentIndex = sections.findIndex(section =>
+            section.classList.contains('hero')
+        );
+
+        const nextSection = sections[currentIndex + 1];
+
+        if (nextSection) {
+
+            const top =
+                nextSection.getBoundingClientRect().top +
+                window.pageYOffset -
+                window.innerHeight / 3;
+
+            window.scrollTo({
+                top,
+                behavior: 'smooth'
+            });
+        }
+    });
 });
 
 
