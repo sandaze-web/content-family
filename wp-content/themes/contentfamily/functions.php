@@ -399,6 +399,24 @@ function register_acf_blocks()
             'icon'              => 'grid-view',
             'supports'          => ['align' => false],
         ));
+        acf_register_block_type(array(
+            'name'              => 'section-prices',
+            'title'             => __('Цены услуг'),
+            'description'       => __(''),
+            'render_template'   => get_template_directory() . '/template-parts/section-prices.php',
+            'category'          => 'layout',
+            'icon'              => 'grid-view',
+            'supports'          => ['align' => false],
+        ));
+        acf_register_block_type(array(
+            'name'              => 'section-services',
+            'title'             => __('Услуги'),
+            'description'       => __(''),
+            'render_template'   => get_template_directory() . '/template-parts/section-services.php',
+            'category'          => 'layout',
+            'icon'              => 'grid-view',
+            'supports'          => ['align' => false],
+        ));
 
 
     }
@@ -424,7 +442,10 @@ add_action('after_setup_theme', function () {
 
 function register_theme_menus() {
     register_nav_menus([
-        'footer_menu' => 'Меню в футере',
+        'footer_menu' => 'Меню страниц',
+    ]);
+    register_nav_menus([
+        'footer_menu_services' => 'Меню услуг',
     ]);
 }
 add_action('init', 'register_theme_menus');

@@ -84,8 +84,8 @@ $studios_note = get_field('studios_note');
                                         </div>
                                     </div>
 
-                                    <?php if ($studio['button_text']): ?>
-                                        <a href="/#calculate-form" class="btn primary-btn studios__button">
+                                    <?php if ($studio['button_text']) : ?>
+                                        <a href="<?php echo esc_url(!empty($studio['button_link']) ? $studio['button_link'] : '/#calculate-form'); ?>" class="btn primary-btn studios__button">
                                             <?php echo esc_html($studio['button_text']); ?>
                                         </a>
                                     <?php endif; ?>

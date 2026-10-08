@@ -48,6 +48,9 @@ $subtitle = get_field('subtitle');     // Текст под заголовком
                                     <img alt="" src="images/socials/tg.svg"/>
                                 </div>
                                 <div class="invite-tags__item-icon">
+                                    <svg width="18" height="18" viewBox="0 0 720 720" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M350.4 9.60003C141.8 20.5 4.09998 184.1 12.8 390.4C16.6 480.7 52.9 558.4 61.5 644.1C63.7 666.3 57.3 693.7 82.9 703.4C114.4 715.3 162.7 695.3 189.1 677C198.1 670.9 206.7 663.8 213.3 655C240.6 673.1 266.5 690.6 299 698.4C442.1 732.7 598.9 654.2 668.6 528.1C799.6 291.2 622.5 -4.59997 350.4 9.60003ZM269.4 504C258.1 512.8 247.2 524.8 234.7 531.7C216.6 541.4 211 531.3 204.2 515.3C182.8 464.4 180.2 377.7 192.7 324.4C209.5 251.9 265.6 188.1 342.7 181.3C420.7 174.4 493.1 214 525.8 285.5C598.2 444.6 412.9 601.7 269.4 504.1V504Z" fill="#0A0B0B"></path> </svg>
+                                </div>
+                                <div class="invite-tags__item-icon">
                                     <img alt="" src="images/socials/wa.svg"/>
                                 </div>
                             </div>
@@ -69,6 +72,11 @@ $subtitle = get_field('subtitle');     // Текст под заголовком
                                     <span></span>
                                     <span>6 минут</span>
                                 </div>
+                                <div class="invite-tags__item-character ">
+                                    <span><img alt="" src="images/icon/m-3.svg"/> Чкаловская</span>
+                                    <span></span>
+                                    <span>4 минуты</span>
+                                </div>
                                 бесплатная парковка на территории
                             </div>
                         </div>
@@ -77,7 +85,7 @@ $subtitle = get_field('subtitle');     // Текст под заголовком
                     <form class="invite-form form-wrapper">
                         <div class="invite-form__item inputBx">
                             <label for="2334">Имя</label>
-                            <input id="2334" name="name" type="text">
+                            <input id="2334" required name="name" type="text">
                         </div>
                         <div class="invite-form__item inputBx">
                             <div class="invite-socialsBx">
@@ -97,6 +105,12 @@ $subtitle = get_field('subtitle');     // Текст под заголовком
                                                           fill="rgb(73, 165, 249)"/>
                                                 </svg>
                                             </span>
+                                    </label>
+                                    <label class="contact-method">
+                                        <input type="radio" name="contact_method" value="Max">
+                                        <span class="contact-icon ">
+                                            <svg width="18" height="18" viewBox="0 0 720 720" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M350.4 9.60003C141.8 20.5 4.09998 184.1 12.8 390.4C16.6 480.7 52.9 558.4 61.5 644.1C63.7 666.3 57.3 693.7 82.9 703.4C114.4 715.3 162.7 695.3 189.1 677C198.1 670.9 206.7 663.8 213.3 655C240.6 673.1 266.5 690.6 299 698.4C442.1 732.7 598.9 654.2 668.6 528.1C799.6 291.2 622.5 -4.59997 350.4 9.60003ZM269.4 504C258.1 512.8 247.2 524.8 234.7 531.7C216.6 541.4 211 531.3 204.2 515.3C182.8 464.4 180.2 377.7 192.7 324.4C209.5 251.9 265.6 188.1 342.7 181.3C420.7 174.4 493.1 214 525.8 285.5C598.2 444.6 412.9 601.7 269.4 504.1V504Z" fill="#0A0B0B"></path> </svg>
+                                        </span>
                                     </label>
 
                                     <label class="contact-method">
@@ -168,7 +182,7 @@ $subtitle = get_field('subtitle');     // Текст под заголовком
                         </div>
                         <div class="invite-form__item inputBx contact-input">
                             <label for="contact-field">Номер телефона *</label>
-                            <input id="contact-field" name="contact_value" type="text" class="phone-invite"
+                            <input id="contact-field" name="contact_value" required type="text" class="phone-invite"
                                    placeholder="+7">
                         </div>
                         <div class="invite-form__item invite-form__checkBx">
@@ -178,7 +192,7 @@ $subtitle = get_field('subtitle');     // Текст под заголовком
                                     политикой конфиденциальности</label>
                             </div>
                         </div>
-                        <button class="btn primary-btn invite-form__button">Записаться</button>
+                        <button class="btn primary-btn invite-form__button" type="submit">Записаться</button>
 
                         <input type="hidden" name="action" value="send_form_handler">
                         <input type="hidden" name="form_name" value="Форма инвайта">

@@ -65,6 +65,35 @@
             background: #fff;
             z-index: 14;
         }
+        .header-nav .sub-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+
+            width: max-content;
+            min-width: 370px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0 !important;
+
+            margin-top: 12px;
+
+            background: #fff;
+            border: 1px solid rgb(227, 227, 227);
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(11, 16, 20, 0.08);
+
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+
+            transition: 0.25s ease;
+            z-index: 30;
+            padding: 16px;
+        }
 
         .header-mainBx {
             display: flex;
@@ -177,6 +206,15 @@
 
         /* Mobile header */
         @media (max-width: 760px) {
+            .header__phone {
+                white-space: nowrap;
+            }
+            .header-socialsBx {
+                gap: 6px;
+            }
+            .header-media {
+                gap: 16px;
+            }
             .header {
                 padding: 16px 0;
             }
@@ -457,11 +495,11 @@
                         </a>
                     <?php endif; ?>
                     <div class="header-socialsBx">
-<!--                        --><?php //if ($max = get_field('site_maks', 'option')): ?>
-<!--                            <a class="header-socialsBx__item" href="--><?php //echo esc_url($max); ?><!--" target="_blank" aria-label="Max">-->
-<!--                                <img alt="" src="/images/socials/max.svg"/>-->
-<!--                            </a>-->
-<!--                        --><?php //endif; ?>
+                        <?php if ($max = get_field('site_maks', 'option')): ?>
+                            <a class="header-socialsBx__item" href="<?php echo esc_url($max); ?>" target="_blank" aria-label="Max">
+                                <img alt="" src="/images/socials/max.svg"/>
+                            </a>
+                        <?php endif; ?>
                         <?php if ($tg = get_field('site_telegram', 'option')): ?>
                             <a class="header-socialsBx__item" href="<?php echo esc_url($tg); ?>" target="_blank" aria-label="Telegram">
                                 <img alt="" src="/images/socials/tg.svg"/>
@@ -477,7 +515,7 @@
 
                     </div>
                 </div>
-                <a href="/#calculate-form" class="btn primary-btn">Оставить заявку</a>
+                <button data-type="feedback-modal" class="btn primary-btn">Оставить заявку</button>
             </div>
 
             <div class="burger"></div>

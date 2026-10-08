@@ -183,7 +183,7 @@ const togglePopupWindows = () => {
       }
 
       popup.classList.add('_is-open')
-      toggleBodyLock(true)
+      // toggleBodyLock(true)
     }
 
     if (
@@ -193,7 +193,7 @@ const togglePopupWindows = () => {
       const popup = target.closest('._overlay-bg')
 
       popup.classList.remove('_is-open')
-      toggleBodyLock(false)
+      // toggleBodyLock(false)
     }
   })
 }
@@ -204,17 +204,17 @@ const menuInit = () => {
     document.addEventListener('click', ({ target }) => {
       if (target.closest('.icon-menu')) {
         html.classList.toggle('menu-open')
-        toggleBodyLock(html.classList.contains('menu-open'))
+        // toggleBodyLock(html.classList.contains('menu-open'))
       }
     })
   }
 }
 const menuOpen = () => {
-  toggleBodyLock(true)
+  // toggleBodyLock(true)
   html.classList.add('menu-open')
 }
 const menuClose = () => {
-  toggleBodyLock(false)
+  // toggleBodyLock(false)
   html.classList.remove('menu-open')
 }
 
@@ -585,6 +585,11 @@ document.addEventListener('DOMContentLoaded', function () { // Аналог $(do
             document.querySelector('.thanks-modal').style.display = 'flex';
         });
     }
+    if (document.querySelector('.feedback-modal')) {
+        setTimeout(() => {
+            document.querySelector('.feedback-modal').style.display = 'flex';
+        });
+    }
 
     const forms = document.querySelectorAll("form");
 
@@ -806,6 +811,82 @@ document.addEventListener('DOMContentLoaded', function () { // Аналог $(do
             });
         }
     });
+
+    const tabsBlocks = document.querySelectorAll('[data-prices-tabs]');
+
+    if(tabsBlocks.length) {
+        tabsBlocks.forEach((block) => {
+            const nav = block.querySelector('.prices__tabs-nav');
+            const buttons = block.querySelectorAll('[data-prices-tab]');
+            const panels = block.querySelectorAll('[data-prices-panel]');
+
+            buttons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    const tabIndex = button.dataset.pricesTab;
+
+                    buttons.forEach((btn) => {
+                        btn.classList.remove('is-active');
+                        btn.setAttribute('aria-selected', 'false');
+                    });
+
+                    panels.forEach((panel) => {
+                        panel.classList.remove('is-active');
+                    });
+
+                    button.classList.add('is-active');
+                    button.setAttribute('aria-selected', 'true');
+
+                    const activePanel = block.querySelector(`[data-prices-panel="${tabIndex}"]`);
+
+                    if (activePanel) {
+                        activePanel.classList.add('is-active');
+                    }
+
+                    if (nav) {
+                        const navStyles = window.getComputedStyle(nav);
+                        const navPaddingLeft = parseFloat(navStyles.paddingLeft) || 0;
+
+                        nav.scrollTo({
+                            left: button.offsetLeft - navPaddingLeft,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+
+    }
+
+    const serviceItems = document.querySelectorAll('.services__item');
+
+    if (
+        serviceItems.length &&
+        window.matchMedia('(hover: hover) and (pointer: fine)').matches
+    ) {
+        serviceItems.forEach((item) => {
+            const video = item.querySelector('.services__video');
+
+            if (!video) return;
+
+            item.addEventListener('mouseenter', () => {
+                video.play().catch(() => {});
+            });
+
+            item.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = 0;
+            });
+
+            item.addEventListener('focus', () => {
+                video.play().catch(() => {});
+            });
+
+            item.addEventListener('blur', () => {
+                video.pause();
+                video.currentTime = 0;
+            });
+        });
+    }
 });
 
 

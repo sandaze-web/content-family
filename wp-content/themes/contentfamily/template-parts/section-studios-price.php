@@ -51,7 +51,7 @@
 
                                     500 ₽ - аренда доп. микрофона
                                 </div>
-                                <a href="/#calculate-form" class="btn price_list_button primary-btn">Забронировать</a>
+                                <a href="#calculate-form" class="btn price_list_button primary-btn">Забронировать</a>
                             </div>
                         </div>
                     </div>

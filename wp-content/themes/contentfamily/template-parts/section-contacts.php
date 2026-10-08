@@ -31,8 +31,15 @@
                     </a>
                 <?php endif; ?>
                 <?php if ($tg = get_field('site_telegram', 'option')): ?>
-                    <a class="contacts__item tg" href="<?php echo esc_url($tg); ?>" target="_blank" aria-label="Telegram">
+                    <a class="contacts__item tg svg" href="<?php echo esc_url($tg); ?>" target="_blank" aria-label="Telegram">
                         <div class="contacts__item-title">Написать в Telegram</div>
+                        <img alt="" src="/images/socials/tg.svg"/>
+                    </a>
+                <?php endif; ?>
+                <?php if ($max = get_field('site_maks', 'option')): ?>
+                    <a class="contacts__item max" href="<?php echo esc_url($max); ?>" target="_blank" aria-label="Telegram">
+                        <div class="contacts__item-title">Написать в Max</div>
+                        <img alt="" src="/images/socials/max.svg"/>
                     </a>
                 <?php endif; ?>
                 <?php if ($wa = get_field('site_whatsapp', 'option')): ?>
@@ -85,6 +92,7 @@
                             Бесплатно для клиентов студии
                         </div>
                     </div>
+
 
                     <img alt="" class="contacts__item-point" src="/images/icon/point.svg"/>
                 </div>

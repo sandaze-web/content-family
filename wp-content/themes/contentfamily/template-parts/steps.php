@@ -43,30 +43,37 @@ $steps = get_field('steps'); // repeater
                             <div class="steps__item-subtitle"><?php echo esc_html($step['step_subtitle']); ?></div>
                         <?php endif; ?>
 
-                        <?php if ($index === 0): ?>
-                            <div class=" steps__item-socials">
-                                <?php if ($phone = get_field('site_phone', 'option')): ?>
-                                    <a class="steps__item-phone" href="tel:<?php echo preg_replace('/\D+/', '', $phone); ?>">
-                                        <?php echo esc_html($phone); ?>
-                                    </a>
-                                <?php endif; ?>
 
-                                <?php if ($tg = get_field('site_telegram', 'option')): ?>
-                                    <a class="steps__item-social" href="<?php echo esc_url($tg); ?>" target="_blank" aria-label="Telegram">
-                                        <img alt="" class="" src="/images/socials/tg.svg"/>
-                                    </a>
-                                <?php endif; ?>
-
-                                <?php if ($wa = get_field('site_whatsapp', 'option')): ?>
-                                    <a class="steps__item-social" href="<?php echo esc_url($wa); ?>" target="_blank" aria-label="WhatsApp">
-                                        <img alt="" class="svg" src="/images/socials/wa.svg"/>
-                                    </a>
-                                <?php endif; ?>
-                            </div>
-                        <?php endif; ?>
                     </div>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
+        <div class=" steps__item-socials">
+            <?php if ($phone = get_field('site_phone', 'option')): ?>
+                <a class="steps__item-phone" href="tel:<?php echo preg_replace('/\D+/', '', $phone); ?>">
+                    <?php echo esc_html($phone); ?>
+                </a>
+            <?php endif; ?>
+
+            <?php if ($tg = get_field('site_telegram', 'option')): ?>
+                <a class="steps__item-social" href="<?php echo esc_url($tg); ?>" target="_blank" aria-label="Telegram">
+                    <img alt="" class="" src="/images/socials/tg.svg"/>
+                </a>
+            <?php endif; ?>
+
+            <?php if ($whatsapp = get_field('site_whatsapp', 'option')): ?>
+                <a class="steps__item-social" href="<?php echo esc_url($whatsapp); ?>" target="_blank" aria-label="Telegram">
+                    <img alt="" class="" src="/images/socials/wa.svg"/>
+                </a>
+            <?php endif; ?>
+
+            <?php if ($max = get_field('site_maks', 'option')): ?>
+                <a class="steps__item-social" href="<?php echo esc_url($max); ?>" target="_blank" aria-label="Telegram">
+                    <img alt="" class="" src="/images/socials/max.svg"/>
+                </a>
+            <?php endif; ?>
+
+
+        </div>
     </div>
 </section>
